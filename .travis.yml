@@ -1,0 +1,111 @@
+
+env:
+   global:
+     - CONAN_USERNAME: "darcamo"
+     - CONAN_LOGIN_USERNAME: "darcamo"
+     - CONAN_CHANNEL: "stable"
+     - CONAN_UPLOAD: "https://api.bintray.com/conan/darcamo/cppsim"
+     - CONAN_BUILD_POLICY: "outdated"
+     - CONAN_ARCHS: "x86_64"
+     - CONAN_TOTAL_PAGES: 4
+
+linux: &linux
+   os: linux
+   sudo: required
+   language: python
+   python: "3.6"
+   services:
+     - docker
+osx: &osx
+   os: osx
+   language: generic
+matrix:
+   include:
+     # xxxxxxxxxx GCC xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=darcamo/archconan CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=1
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=darcamo/archconan CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=2
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=darcamo/archconan CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=3
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=darcamo/archconan CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=4
+
+
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=darcamo/conangcc7 CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=1
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=darcamo/conangcc7 CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=2
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=darcamo/conangcc7 CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=3
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=darcamo/conangcc7 CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=4
+
+
+      # - <<: *linux
+      #   env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=darcamo/archconan CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=1
+      # - <<: *linux
+      #   env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=darcamo/archconan CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=2
+      # - <<: *linux
+      #   env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=darcamo/archconan CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=3
+      # - <<: *linux
+      #   env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=darcamo/archconan CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=4
+
+
+      # - <<: *linux
+      #   env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=darcamo/conangcc7 CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=1
+      # - <<: *linux
+      #   env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=darcamo/conangcc7 CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=2
+      # - <<: *linux
+      #   env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=darcamo/conangcc7 CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=3
+      # - <<: *linux
+      #   env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=darcamo/conangcc7 CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=4
+
+
+      # xxxxxxxxxx Clang xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=lasote/conanclang50 CONAN_BUILD_TYPES=Release CXXFLAGS="-std=c++14" CONAN_CURRENT_PAGE=1
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=lasote/conanclang50 CONAN_BUILD_TYPES=Release CXXFLAGS="-std=c++14" CONAN_CURRENT_PAGE=2
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=lasote/conanclang50 CONAN_BUILD_TYPES=Release CXXFLAGS="-std=c++14" CONAN_CURRENT_PAGE=3
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=lasote/conanclang50 CONAN_BUILD_TYPES=Release CXXFLAGS="-std=c++14" CONAN_CURRENT_PAGE=4
+
+
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=darcamo/archconanclang CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=1
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=darcamo/archconanclang CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=2
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=darcamo/archconanclang CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=3
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=darcamo/archconanclang CONAN_BUILD_TYPES=Release CONAN_CURRENT_PAGE=4
+
+
+      # - <<: *linux
+      #   env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=lasote/conanclang50 CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=1
+      # - <<: *linux
+      #   env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=lasote/conanclang50 CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=2
+      # - <<: *linux
+      #   env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=lasote/conanclang50 CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=3
+      # - <<: *linux
+      #   env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=lasote/conanclang50 CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=4
+
+
+      # - <<: *linux
+      #   env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=darcamo/archconanclang CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=1
+      # - <<: *linux
+      #   env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=darcamo/archconanclang CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=2
+      # - <<: *linux
+      #   env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=darcamo/archconanclang CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=3
+      # - <<: *linux
+      #   env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=darcamo/archconanclang CONAN_BUILD_TYPES=Debug CONAN_CURRENT_PAGE=4
+
+install:
+  - chmod +x .travis/install.sh
+  - ./.travis/install.sh
+
+script:
+  - chmod +x .travis/run.sh
+  - ./.travis/run.sh

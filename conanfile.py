@@ -6,7 +6,7 @@ import os
 
 class HwlocConan(ConanFile):
     name = "hwloc"
-    version = "1.11.12"
+    version = "1.11.13"
     license = "BSD license"
     url = "https://github.com/darcamo/conan-hwloc"
     description = "The Hardware Locality (hwloc) software project aims at easing the process of discovering hardware resources in parallel architectures."
